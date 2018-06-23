@@ -35,7 +35,7 @@
 
 <body>
   <header>
-    <h1>Free Telec <small>v0.2</small></h1>
+    <h1>Free Telec <small>v0.2.1</small></h1>
   </header>
   ``
   <section>
@@ -164,37 +164,43 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="./conf.js" text="text/JavaScript"></script>
   <script type="text/JavaScript">
-     $(function() {
-       $('.btn').on('click',function(){
-         callApi($(this).data('key'));
-       });
-       $('body').on('keypress', function(e){
-         const codes = {
-           13: 'ok',
-           38: 'up',
-           40: 'down',
-           37: 'left',
-           39: 'right',
-           109: 'green',  //m -> Menu
-           105: 'yellow', //i -> Info
-           115: 'blue',   //s -> Search
-           97: 'tv',      //a -> A/V
-           49: 1,
-           50: 2,
-           51: 3,
-           52: 4,
-           53: 5,
-           54: 6,
-           55: 7,
-           56: 8,
-           57: 9,
-           48: 0
-         };
-         let code = (e.keyCode ? e.keyCode : e.which);
+    let callApi = function(code)
+    {
+      $.get("http://hd1.freebox.fr/pub/remote_control?code="+codeTelec+"&key="+code);
+    };
 
-         callApi(codes[code]);
-       });
-     });
+    $(function() {
+      $('.btn').on('click',function(){
+        callApi($(this).data('key'));
+      });
+
+      $('body').on('keypress', function(e){
+        const codes = {
+          13: 'ok',
+          38: 'up',
+          40: 'down',
+          37: 'left',
+          39: 'right',
+          109: 'green',  //m -> Menu
+          105: 'yellow', //i -> Info
+          115: 'blue',   //s -> Search
+          97: 'tv',      //a -> A/V
+          49: 1,
+          50: 2,
+          51: 3,
+          52: 4,
+          53: 5,
+          54: 6,
+          55: 7,
+          56: 8,
+          57: 9,
+          48: 0
+        };
+        let code = (e.keyCode ? e.keyCode : e.which);
+
+        callApi(codes[code]);
+      });
+    });
   </script>
 </body>
 
