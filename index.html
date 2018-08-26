@@ -28,6 +28,37 @@
     .btn-group .col-md-4, .btn-group .col-md-12 {
       padding: 10px;
     }
+
+    .clear {
+      clear: both;
+    }
+
+    .bs-callout {
+      padding: 20px;
+      margin: 36px 20px;
+      border: 1px solid #eee;
+      border-left-color: rgb(238, 238, 238);
+      border-left-width: 1px;
+      border-left-width: 5px;
+      border-radius: 3px;
+    }
+
+    .bs-callout-info {
+      border-left-color: #2aabd2;
+    }
+
+    ul {
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+
+    @media screen and (max-width: 640px) {
+      ul {
+        height: auto;
+      }
+    }
   </style>
 </head>
 
@@ -154,7 +185,32 @@
         </div>
       </div>
     </div>
+    <div class="bs-callout bs-callout-info clear">
+      <h4>Raccourcis clavier</h4>
+      <p>
+        Certaines fonctionnalités de la télécommande peuvent être directement utilisée avec votre clavier.
+        <br />
+        En voici la liste :
+      </p>
+      <ul>
+        <li>Entrée : ok</li>
+        <li>Flèche haut: haut</li>
+        <li>Flèche bas: bas</li>
+        <li>Flèche droite: droite</li>
+        <li>Flèche gauche: gauche</li>
+        <li>Echap: retour (touche rouge)</li>
+        <li>f: Free</li>
+        <li>m: Menu (touche verte)</li>
+        <li>i: Info (touche jaune)</li>
+        <li>s: Recherche (touche bleue)</li>
+        <li>a: A/V</li>
+        <li>1-0: touche 1-0</li>
+        <li>+: Programme +</li>
+        <li>-: Programme -</li>
+      </ul>
+    </div>
   </section>
+
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -172,12 +228,15 @@
       });
 
       $('body').on('keypress', function(e){
+        console.log( e.keyCode , e.which);
         const codes = {
           13: 'ok',
           38: 'up',
           40: 'down',
           37: 'left',
           39: 'right',
+          27: 'red', //Esc/back
+          102: 'home', //Free
           109: 'green',  //m -> Menu
           105: 'yellow', //i -> Info
           115: 'blue',   //s -> Search
@@ -191,9 +250,13 @@
           55: 7,
           56: 8,
           57: 9,
-          48: 0
+          48: 0,
+          45: 'prgm_dec',
+          43: 'prgm_inc'
         };
         let code = (e.keyCode ? e.keyCode : e.which);
+
+        console.log('Code:', code, codes)
 
         callApi(codes[code]);
       });
