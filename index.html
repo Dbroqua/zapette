@@ -25,6 +25,11 @@
       padding-left: 16px;
     }
 
+    .row {
+      margin: 0;
+      padding: 0;
+    }
+
     .btn-group .col-md-4, .btn-group .col-md-12 {
       padding: 10px;
     }
@@ -35,7 +40,7 @@
 
     .bs-callout {
       padding: 20px;
-      margin: 36px 20px;
+      margin: 20px 0;
       border: 1px solid #eee;
       border-left-color: rgb(238, 238, 238);
       border-left-width: 1px;
@@ -64,7 +69,7 @@
 
 <body>
   <header>
-    <h1>Free Telec <small>v0.2.2</small></h1>
+    <h1>Free Telec <small>v0.2.3</small></h1>
   </header>
   <section>
     <div class="row col-xs-12">
@@ -185,29 +190,31 @@
         </div>
       </div>
     </div>
-    <div class="bs-callout bs-callout-info clear">
-      <h4>Raccourcis clavier</h4>
-      <p>
-        Certaines fonctionnalités de la télécommande peuvent être directement utilisée avec votre clavier.
-        <br />
-        En voici la liste :
-      </p>
-      <ul>
-        <li>Entrée : ok</li>
-        <li>Flèche haut: haut</li>
-        <li>Flèche bas: bas</li>
-        <li>Flèche droite: droite</li>
-        <li>Flèche gauche: gauche</li>
-        <li>Echap: retour (touche rouge)</li>
-        <li>f: Free</li>
-        <li>m: Menu (touche verte)</li>
-        <li>i: Info (touche jaune)</li>
-        <li>s: Recherche (touche bleue)</li>
-        <li>a: A/V</li>
-        <li>1-0: touche 1-0</li>
-        <li>+: Programme +</li>
-        <li>-: Programme -</li>
-      </ul>
+    <div class="col-xs-12">
+      <div class="bs-callout bs-callout-info clear">
+        <h4>Raccourcis clavier</h4>
+        <p>
+          Certaines fonctionnalités de la télécommande peuvent être directement utilisée avec votre clavier.
+          <br />
+          En voici la liste :
+        </p>
+        <ul>
+          <li>Entrée : ok</li>
+          <li>Flèche haut: haut</li>
+          <li>Flèche bas: bas</li>
+          <li>Flèche droite: droite</li>
+          <li>Flèche gauche: gauche</li>
+          <li>Echap: retour (touche rouge)</li>
+          <li>f: Free</li>
+          <li>m: Menu (touche verte)</li>
+          <li>i: Info (touche jaune)</li>
+          <li>s: Recherche (touche bleue)</li>
+          <li>a: A/V</li>
+          <li>1-0: touche 1-0</li>
+          <li>+: Programme +</li>
+          <li>-: Programme -</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -228,7 +235,6 @@
       });
 
       $('body').on('keypress', function(e){
-        console.log( e.keyCode , e.which);
         const codes = {
           13: 'ok',
           38: 'up',
@@ -255,8 +261,6 @@
           43: 'prgm_inc'
         };
         let code = (e.keyCode ? e.keyCode : e.which);
-
-        console.log('Code:', code, codes)
 
         callApi(codes[code]);
       });
