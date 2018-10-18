@@ -1,3 +1,5 @@
+# Projet déplacé vers [framagit](https://framagit.org/dbroqua/zapette)
+
 # Zapette
 
 This is just a simple zapette for Freebox TV module.
